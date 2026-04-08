@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Stencer Rein ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #110609;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      font-family: 'Lora', Georgia, serif;
+    }
+
+    .wrap {
+      background: #1a0a14;
+      border-radius: 24px;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .starfield {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .floater {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(0.7) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.65; }
+      85%  { opacity: 0.4; }
+      100% { transform: translateY(-680px) scale(1.1) rotate(20deg); opacity: 0; }
+    }
+
+    .star-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: #f9c8dc;
+      animation: twinkle ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50%       { opacity: 0.85; transform: scale(1.5); }
+    }
+
+    .card {
+      background: rgba(251, 234, 240, 0.06);
+      border: 0.5px solid rgba(244, 192, 209, 0.25);
+      border-radius: 20px;
+      padding: 2.5rem 2rem 2.2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: cardReveal 1.2s cubic-bezier(.22,.68,0,1.1) 0.4s forwards;
+    }
+
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .hearts-row {
+      display: flex; justify-content: center; align-items: center; gap: 8px;
+      margin-bottom: 1.2rem;
+    }
+    .ph  { animation: heartbeat 2s ease-in-out infinite; }
+    .ph2 { animation: heartbeat 2s ease-in-out 0.4s infinite; }
+    @keyframes heartbeat {
+      0%,100% { transform: scale(1); }
+      30%      { transform: scale(1.22); }
+      60%      { transform: scale(1.08); }
+    }
+
+    .to-label {
+      font-style: italic; font-size: 12px; color: #ED93B1;
+      letter-spacing: 0.14em;
+      opacity: 0; animation: fadeUp 0.8s ease 1s forwards;
+    }
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 500; color: #f9c8dc;
+      margin: 0.3rem 0 1.2rem;
+      text-shadow: 0 0 30px rgba(212,83,126,0.45);
+      opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 10px;
+      margin: 0 auto 1.4rem; justify-content: center;
+      opacity: 0; animation: fadeUp 0.7s ease 1.4s forwards;
+    }
+    .dline { width: 44px; height: 0.5px; background: rgba(237,147,177,0.35); }
+    .ddot  { width: 4px; height: 4px; background: #D4537E; border-radius: 50%; }
+
+    .intro {
+      font-style: italic; font-size: 14px; color: #f0b8cc; line-height: 1.85;
+      margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp 0.7s ease 1.5s forwards;
+    }
+
+    .reasons { list-style: none; text-align: left; margin-bottom: 1.4rem; }
+    .reasons li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13.5px; color: #f0b8cc;
+      padding: 0.65rem 0;
+      border-bottom: 0.5px solid rgba(244,192,209,0.12);
+      line-height: 1.65;
+      opacity: 0; animation: slideIn 0.65s ease forwards;
+    }
+    .reasons li:last-child { border-bottom: none; }
+    .reasons li:nth-child(1) { animation-delay: 1.7s; }
+    .reasons li:nth-child(2) { animation-delay: 1.95s; }
+    .reasons li:nth-child(3) { animation-delay: 2.2s; }
+    .reasons li:nth-child(4) { animation-delay: 2.45s; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-14px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .ri { width: 16px; height: 16px; min-width: 16px; margin-top: 3px; }
+
+    .closing {
+      font-style: italic; font-size: 13.5px; color: #ED93B1; line-height: 1.9;
+      opacity: 0; animation: fadeUp 0.7s ease 2.7s forwards;
+    }
+    .sig {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; color: #f9c8dc;
+      margin-top: 0.6rem;
+      text-shadow: 0 0 20px rgba(212,83,126,0.5);
+      opacity: 0; animation: fadeUp 0.7s ease 2.95s forwards;
+    }
+
+    .spark {
+      display: inline-block;
+      animation: sparkspin 4s linear infinite;
+    }
+    .spark2 { animation-delay: 1.2s; }
+    @keyframes sparkspin {
+      0%   { transform: rotate(0deg) scale(1); opacity: 0.6; }
+      50%  { transform: rotate(180deg) scale(1.35); opacity: 1; }
+      100% { transform: rotate(360deg) scale(1); opacity: 0.6; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .share-btn {
+      margin-top: 1.8rem;
+      background: rgba(212,83,126,0.82);
+      color: #fff0f5;
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 2.2rem;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      z-index: 2;
+      position: relative;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 3.2s forwards;
+    }
+    .share-btn:hover { background: rgba(153,53,86,0.95); transform: scale(1.05); }
+    .share-btn:active { transform: scale(0.97); }
+
+    .copied {
+      font-style: italic; font-size: 12px; color: #ED93B1;
+      margin-top: 0.6rem; height: 16px;
+      opacity: 0; transition: opacity 0.3s;
+      position: relative; z-index: 2;
+    }
+    .copied.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="wrap">
+    <div class="starfield" id="starfield"></div>
+
+    <div class="card">
+      <div class="hearts-row">
+        <svg class="ph2" width="13" height="13" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ED93B1"/></svg>
+        <svg class="ph"  width="22" height="22" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D4537E"/></svg>
+        <svg class="ph2" width="13" height="13" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ED93B1"/></svg>
+      </div>
+
+      <p class="to-label">a little note for</p>
+      <p class="name">Stencer Rein</p>
+
+      <div class="divider">
+        <div class="dline"></div><div class="ddot"></div><div class="dline"></div>
+      </div>
+
+      <p class="intro">Just a few of the endless reasons<br>why I love you...</p>
+
+      <ul class="reasons">
+        <li>
+          <svg class="ri" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D4537E"/></svg>
+          <span>The way you make every ordinary moment feel like something magical.</span>
+        </li>
+        <li>
+          <svg class="ri" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D4537E"/></svg>
+          <span>Your laugh — it's honestly my favourite sound in the entire world.</span>
+        </li>
+        <li>
+          <svg class="ri" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D4537E"/></svg>
+          <span>The way you make me feel seen, heard, and loved every single day.</span>
+        </li>
+        <li>
+          <svg class="ri" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D4537E"/></svg>
+          <span>Simply being you — there is truly no one else like you in this world.</span>
+        </li>
+      </ul>
+
+      <div class="divider">
+        <div class="dline"></div><div class="ddot"></div><div class="dline"></div>
+      </div>
+
+      <p class="closing">You are my favourite person,<br>today, tomorrow, and always.</p>
+      <p class="sig"><span class="spark">✦</span> With all my love ♡ <span class="spark spark2">✦</span></p>
+    </div>
+
+    <button class="share-btn" onclick="copyLink()">Mi-amorr ♡</button>
+    <p class="copied" id="copied">Link copied!</p>
+  </div>
+
+  <script>
+    const sf = document.getElementById('starfield');
+    const symbols = ['✦','✧','♩','♪','♫','♬','·','⋆'];
+    const pinks   = ['#f9c8dc','#ED93B1','#D4537E','#ffffff','#f4e0ea'];
+
+    for (let i = 0; i < 32; i++) {
+      const el = document.createElement('div');
+      el.className = 'floater';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left   = (Math.random() * 95) + '%';
+      el.style.bottom = '-20px';
+      el.style.color  = pinks[Math.floor(Math.random() * pinks.length)];
+      el.style.fontSize = (10 + Math.random() * 10) + 'px';
+      el.style.animationDuration = (8 + Math.random() * 9) + 's';
+      el.style.animationDelay   = (Math.random() * 10) + 's';
+      sf.appendChild(el);
+    }
+
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement('div');
+      s.className = 'star-dot';
+      const size = 1 + Math.random() * 2.5;
+      s.style.width  = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left   = (Math.random() * 100) + '%';
+      s.style.top    = (Math.random() * 100) + '%';
+      s.style.animationDuration = (2 + Math.random() * 4) + 's';
+      s.style.animationDelay   = (Math.random() * 6) + 's';
+      sf.appendChild(s);
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const el = document.getElementById('copied');
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 2500);
+      });
+    }
+  </script>
+</body>
+</html>
